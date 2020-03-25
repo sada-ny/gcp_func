@@ -101,6 +101,52 @@ def server_error(e):
     See logs for full stacktrace.
     """.format(e), 500
 
+def gcf_runbatch():
+    load_historical_data('Universe')
+    load_historical_data('Macro')
+    load_historical_data('SP500', period_length='1y')
+    load_historical_data(('nonUSD_Universe'), period_length='9mo')
+    return 'Data Loaded'
+
+
+def gcf_stockinfo():
+    get_stock_info()
+    return 'Stock Info Generated'
+
+
+def gcf_createhistory():
+    create_history('Universe')
+    create_non_usd_history()
+    create_history('Macro')
+    create_history('SP500')
+    return 'History Created'
+
+
+def gcf_runregression():
+    generate_LR_Coefficients()
+    return 'Regression Finished'
+
+
+def gcf_runsummary():
+    print("in summary")
+    create_summary('Universe')
+    create_summary('nonUSD_Universe')
+    create_summary('Macro')
+    create_master_summary()
+    return 'Summary Finished'
+
+
+def gcf_runPL():
+    print ("in PL")
+    create_holdings_pl()
+    return 'PL Finished'
+
+def gcf_getIndic():
+    print ("Getting Indicators")
+    load_FRED_indicators()
+    load_SP_Indices()
+    return 'Indicators loaded'
+
 
 if __name__ == '__main__':
     # This is used when running locally. Gunicorn is used to run the

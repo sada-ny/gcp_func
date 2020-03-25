@@ -1,0 +1,9 @@
+Flask==1.1.1
+google-cloud-storage==1.24.1
+google-cloud-pubsub==1.0.0
+gunicorn==19.9.0
+yfinance
+lxml
+sklearn
+fredapi
+xlrd
