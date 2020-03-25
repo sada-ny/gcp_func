@@ -101,7 +101,7 @@ def server_error(e):
     See logs for full stacktrace.
     """.format(e), 500
 
-def gcf_runbatch():
+def gcf_runbatch(request):
     load_historical_data('Universe')
     load_historical_data('Macro')
     load_historical_data('SP500', period_length='1y')
@@ -109,12 +109,12 @@ def gcf_runbatch():
     return 'Data Loaded'
 
 
-def gcf_stockinfo():
+def gcf_stockinfo(request):
     get_stock_info()
     return 'Stock Info Generated'
 
 
-def gcf_createhistory():
+def gcf_createhistory(request):
     create_history('Universe')
     create_non_usd_history()
     create_history('Macro')
@@ -122,12 +122,12 @@ def gcf_createhistory():
     return 'History Created'
 
 
-def gcf_runregression():
+def gcf_runregression(request):
     generate_LR_Coefficients()
     return 'Regression Finished'
 
 
-def gcf_runsummary():
+def gcf_runsummary(request):
     print("in summary")
     create_summary('Universe')
     create_summary('nonUSD_Universe')
@@ -136,12 +136,12 @@ def gcf_runsummary():
     return 'Summary Finished'
 
 
-def gcf_runPL():
+def gcf_runPL(request):
     print ("in PL")
     create_holdings_pl()
     return 'PL Finished'
 
-def gcf_getIndic():
+def gcf_getIndic(request):
     print ("Getting Indicators")
     load_FRED_indicators()
     load_SP_Indices()
